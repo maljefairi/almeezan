@@ -39,3 +39,4 @@ secret_key.txt
 *.txt
 !requirements.txt
 *.log
+.DS_Store
