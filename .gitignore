@@ -1,0 +1,41 @@
+# Django project .gitignore
+
+# Ignore database file
+db.sqlite3
+
+# Ignore environment variables file
+.env
+
+# Ignore static files directory
+/static/
+
+# Ignore media files directory
+/media/
+
+# Ignore log files
+*.log
+
+# Ignore compiled Python files
+*.pyc
+
+# Ignore cache directories
+__pycache__/
+.cache/
+
+# Ignore virtual environment directory
+venv/
+.venv/
+
+# Ignore IDE specific files
+.vscode/
+.idea/
+
+# Ignore deployment files
+*.env.deploy
+*.env.prod
+
+# Ignore sensitive information
+secret_key.txt
+*.txt
+!requirements.txt
+*.log
