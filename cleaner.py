@@ -1,5 +1,10 @@
 import os
 import re
+import hashlib
+
+def get_file_hash(file_path):
+    with open(file_path, 'rb') as file:
+        return hashlib.md5(file.read()).hexdigest()
 
 def clean_file(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
@@ -40,10 +45,12 @@ def clean_file(file_path):
         with open(file_path, 'w', encoding='utf-8') as file:
             file.write(cleaned_content)
         print(f"Cleaned: {file_path}")
+        return True
     else:
         # Delete the file if it's empty after cleaning
         os.remove(file_path)
         print(f"Deleted empty file: {file_path}")
+        return False
 
 def scan_and_clean_folders():
     # List of folders created by the previous web scraping script
@@ -52,11 +59,18 @@ def scan_and_clean_folders():
     for folder in folders:
         if os.path.exists(folder):
             print(f"Processing folder: {folder}")
+            file_hashes = {}
             for root, _, files in os.walk(folder):
                 for file in files:
                     if file.endswith('.txt'):
                         file_path = os.path.join(root, file)
-                        clean_file(file_path)
+                        if clean_file(file_path):
+                            file_hash = get_file_hash(file_path)
+                            if file_hash in file_hashes:
+                                os.remove(file_path)
+                                print(f"Deleted duplicate file: {file_path}")
+                            else:
+                                file_hashes[file_hash] = file_path
         else:
             print(f"Folder not found: {folder}")
 

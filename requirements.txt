@@ -10,3 +10,11 @@ multidict==6.0.5
 soupsieve==2.6
 tqdm==4.66.5
 yarl==1.9.4
+torch==2.2.1
+transformers==4.38.2
+datasets==2.18.0
+sentence-transformers==2.5.1
+scikit-learn==1.4.1.post1
+numpy==1.26.4
+networkx==3.2.1
+matplotlib==3.8.3
